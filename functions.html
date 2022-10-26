@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIT Week 5 | JS Functions</title>
+  </head>
+  <body>
+    <h1>BIT Week 5</h1>
+    <h2>JS Fuctions</h2>
+    <p>Results in console</p>
+  </body>
+  <script>
+    // 1. Write a program that calculates the maximum of two given numbers.
+    function getMax(a, b) {
+      if (a > b) {
+        return a;
+      } else if (b > a) {
+        return b;
+      }
+      return "Numbers are equal";
+    }
+    console.log(getMax(2, 3));
+
+    // 2. Write a program that checks if a given number is odd.
+    function isOdd(a) {
+      if (a % 2 === 0) return "No";
+      return "Yes";
+    }
+    console.log(isOdd(3));
+
+    // 3. Write a program that checks if a given number is a three digit long number.
+    function isThreeDigit(a) {
+      var b = a + "1";
+      if (b.length === 4) return "Yes";
+      return "No";
+    }
+    console.log(isThreeDigit(232));
+
+    // 4. Write a program that calculates an arithmetic mean of four numbers.
+    function calcAverage(a, b, c, d) {
+      return (a + b + c + d) / 4;
+    }
+
+    console.log(calcAverage(2, 4, 10, 4));
+
+    // 5. Write a program that draws a square of a given size.
+    // For example, if the size of square is 5 the program should draw:
+    // *****      ******
+    // *   *      *     *
+    // *   *      *     *
+    // *   *      *     *
+    // *****      *     *
+    //            ******
+    function drawSquare(a) {
+      var star = "*";
+      var blank = " ";
+      var rowFirst = "";
+      var rowLast = "";
+      var rowMid = "";
+      var result = "";
+
+      var rowBlank = "";
+      for (var i = 0; i < a; i++) {
+        rowFirst += star;
+        rowLast += star;
+      }
+      for (var j = 0; j < a - 2; j++) {
+        rowBlank += blank;
+      }
+      for (var j = 0; j < a - 2; j++) {
+        rowMid += star + rowBlank + star + "\n";
+      }
+      return (result = rowFirst + "\n" + rowMid + rowLast);
+    }
+    console.log(drawSquare(5));
+
+    // 6. Write a program that draws a horizontal chart representing three given values.
+    // For example, if values are 5, 3, and 7, the program should draw:
+    // * * * * *
+    // * * *
+    // * * * * * * *
+    function drawChart(a, b, c) {
+      var star = "*";
+      var row1 = "";
+      var row2 = "";
+      var row3 = "";
+
+      for (var i = 0; i < a; i++) {
+        row1 += star;
+      }
+      for (var j = 0; j < b; j++) {
+        row2 += star;
+      }
+      for (var k = 0; k < c; k++) {
+        row3 += star;
+      }
+      return "" + row1 + "\n" + row2 + "\n" + row3;
+    }
+
+    console.log(drawChart(5, 3, 7));
+    // 7. Write a program that calculates a number of digits of a given number.
+
+    // 8. Write a program that calculates a number of appearances of a given number in a given array.
+    // Inputs: a = [2, 4, 7, 8, 7, 7, 1], e = 7
+    // Result: 3
+    var arr = [2, 4, 7, 8, 7, 7, 1];
+
+    function calcAppearances(x) {
+      var counter = 0;
+      for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === x) counter++;
+      }
+      return counter;
+    }
+    console.log(calcAppearances(7));
+
+    // 9. Write a program that calculates the sum of odd elements of a given array.
+    function calcOddSum() {
+      var sum = 0;
+      for (var j = 0; j < arr.length; j++) {
+        if (arr[j] % 2 === 0) sum += arr[j];
+      }
+      return sum;
+    }
+    console.log(calcOddSum());
+
+    // 10. Write a program that calculates the number of appearances of a letter a in a given string.
+    // Modify the program so it calculates the number of both letters a and A.
+    function calcLetterA(s) {
+      var counter = 0;
+      for (var k = 0; k < s.length; k++) {
+        if (s[k] === "A" || s[k] === "a") counter++;
+      }
+      return counter;
+    }
+    console.log(calcLetterA("Appearances"));
+
+    // 11. Write a program that concatenates a given string given number of times.
+    // For example, if “abc” and 4 are given values, the program prints out abcabcabcabc.
+    function concStr(s, x) {
+      var result = "";
+      for (var l = 0; l < x; l++) result += s;
+      return result;
+    }
+
+    console.log(concStr("abc", 4));
+  </script>
+</html>
