@@ -168,8 +168,11 @@
     // " " -> true
     // 12 -> false
     // false -> false
-    
-    //KOMENTAR: Sta da je string koji proveravas "     "? To je i dalje prazan string, a prikazace ti ga kao False. Kako bi to resio? :) 
+
+    //KOMENTAR: Sta da je string koji proveravas "     "? To je i dalje prazan string, a prikazace ti ga kao False. Kako bi to resio? :)
+    // ODG: To ne odgovara definiciji praznog stringa
+    // Mogao bih da prodjem kroz string i proverim da li su sve vrednosti iteracije " ". Ukoliko jesu, prazan
+    // Prva na koju naidje da nije prazan, break, not empty
     function checkEmpty(p) {
       if (p === "") {
         console.log("True: String is empty.");
@@ -398,7 +401,7 @@
       }
       console.log(result);
     }
-    
+
     //KOMENTAR: Lepo si se ovoga setio! :)
 
     humanizeNum(11);
@@ -553,20 +556,33 @@
     }
 
     isPerfect(28);
+
     // 8. Write a function to find a word within a string.
     // 'The quick brown fox', 'fox' -> "'fox' was found 1 times"
     // 'aa bb cc dd aa', 'aa' -> "'aa' was found 2 times"
     function findStr(string, word) {
-      var result = "";
       var counter = 0;
+      var tempCounter = 0;
 
-      for (var i = 0; i < string.length; i++) {}
+      for (var i = 0; i < string.length; i++) {
+        if (string[i] === word[0]) {
+          for (var j = i; j < i + word.length; j++) {
+            if (string[j] === word[j - i]) {
+              tempCounter++;
+            }
+            if (tempCounter === word.length) {
+              counter++;
+            }
+          }
+          tempCounter = 0;
+        }
+      }
+      console.log("'" + word + "' " + "was found " + counter + " times.");
       // KOMENTAR: Ovaj nisi znao da uradis ili si zaboravio?
-
-      console.log(result);
+      // ODG: Nisam znao. Ovo je uz pomoc neta
     }
 
-    findStr("The quick brown fox", "fox");
+    findStr("aa bb cc dd aa", "aa");
 
     // 9. Write a function to hide email address.
     // "myemailaddress@bgit.rs" -> "mye...@bgit.rs"
@@ -819,5 +835,82 @@
       console.log(result);
     }
     insertEl(78, 3, [2, -2, 33, 12, 5, 8]);
+
+    // EXERCISE 5 PRE-DEFINED FUNCTIONS
+    console.log("__________________");
+    console.log("EXERCISE 5 PRE-DEFINED FUNCTIONS");
+    console.log("__________________");
+
+    // 1. Write a function that converts an array of strings into an array of numbers.
+    // Filter out all non-numeric values.
+    // Input: ["1", "21", undefined, "42", "1e+3", Infinity]
+    // Output: [1, 21, 42, 1000]
+    function convertIntoStr(arr) {
+      var result = [];
+
+      for (var i = 0; i < arr.length; i++) {
+        if (isFinite(arr[i])) {
+          result.push(+arr[i]);
+        }
+      }
+      console.log(result);
+    }
+    convertIntoStr(["1", "21", undefined, "42", "1e+3", Infinity]);
+
+    // 2. Write a program to join all elements of the array into a string skipping elements
+    // that are undefined, null, NaN or Infinity.
+    // Input: [NaN, 0, 15, false, -22, '', undefined, 47, null]
+    // Output: “015false-2247”
+    function joinToStr(arr) {
+      var result = arr.filter(function (el) {
+        return el !== undefined && el !== null && el !== Infinity && !isNaN(el);
+      });
+      console.log(result.join(""));
+    }
+    joinToStr([NaN, 0, 15, false, -22, "", undefined, 47, null]);
+
+    // 3. Write a program to filter out falsy values from the array.
+    // Input: [NaN, 0, 15, false, -22, '', undefined, 47, null]
+    // Output: [15, -22, 47]
+    function removeFalsy(arr) {
+      var result = arr.filter(Boolean);
+      console.log(result);
+    }
+    removeFalsy([NaN, 0, 15, false, -22, "", undefined, 47, null]);
+
+    // 4. Write a program that calculates a number of integer values in the array.
+    // Input: [NaN, 23.1, 15, false, -22.5, '', 4, 7, null]
+    // Output: 3
+    function calcInt(arr) {
+      var counter = 0;
+
+      for (var i = 0; i < arr.length; i++) {
+        if (Number.isInteger(arr[i])) {
+          counter++;
+        }
+      }
+      console.log(counter);
+    }
+    calcInt([NaN, 23.1, 15, false, -22.5, "", 4, 7, null]);
+
+    // 5. Write a program that calculates a number of float values in the array.
+    // Input: [NaN, 23.1, 15, false, -22.5, '', 4, 7, null]
+    // Output: 2
+    function calcFloat(arr) {
+      var counter = 0;
+
+      for (var i = 0; i < arr.length; i++) {
+        if (
+          typeof arr[i] === "number" &&
+          !Number.isNaN(arr[i]) &&
+          !Number.isInteger(arr[i])
+        ) {
+          counter++;
+        }
+      }
+
+      console.log(counter);
+    }
+    calcFloat([NaN, 23.1, 15, false, -22.5, "", 4, 7, null]);
   </script>
 </html>
