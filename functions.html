@@ -173,6 +173,11 @@
     // ODG: To ne odgovara definiciji praznog stringa
     // Mogao bih da prodjem kroz string i proverim da li su sve vrednosti iteracije " ". Ukoliko jesu, prazan
     // Prva na koju naidje da nije prazan, break, not empty
+    
+    // KOMENTAR: tacno, nije prazan string, to je whitespace. Moze tako kao sto si opisao, a alternativa tome bi bila da koristis ugradjenu funkciju Trim.
+    // Ona funkcionise tako sto trimuje iz stringa sve razmake iliti prazna polja. Pa proveris duzinu stringa, ako je nula onda je to prazan.
+    
+    
     function checkEmpty(p) {
       if (p === "") {
         console.log("True: String is empty.");
@@ -580,6 +585,8 @@
       console.log("'" + word + "' " + "was found " + counter + " times.");
       // KOMENTAR: Ovaj nisi znao da uradis ili si zaboravio?
       // ODG: Nisam znao. Ovo je uz pomoc neta
+      
+      // Resenje je tacno, nadam se da razumes kako funkcionise?
     }
 
     findStr("aa bb cc dd aa", "aa");
